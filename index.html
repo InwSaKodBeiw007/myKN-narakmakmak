@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bear Hugs</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #282c34;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #61dafb;
+        }
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #bearGif {
+            max-width: 450px; /* Fixed width */
+            height: 450px; /* Fixed height */
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, left 0.5s ease, top 0.5s ease; /* Added for smooth movement */
+        }
+        #yesButton {
+            background-color: #28a745;
+            color: white;
+        }
+        #yesButton:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        #noButton {
+            background-color: #dc3545;
+            color: white;
+            position: relative; /* Added for repositioning */
+            transition: background-color 0.3s ease, transform 0.2s ease, left 0.5s ease, top 0.5s ease; /* Added for smooth movement */
+        }
+        #noButton:hover:not(:disabled) {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+        #noButton:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        /* Heart animation styles */
+        .heart {
+            position: absolute;
+            background-color: red;
+            transform: rotate(-45deg);
+            width: 40px; /* Increased size */
+            height: 40px; /* Increased size */
+            animation: fallAndFade 5s linear forwards;
+            opacity: 0; /* Start hidden */
+            z-index: -1; /* Behind other content */
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 40px; /* Increased size */
+            height: 40px; /* Increased size */
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -20px; /* Adjusted for new size */
+            left: 0;
+        }
+
+        .heart::after {
+            left: 20px; /* Adjusted for new size */
+            top: 0;
+        }
+
+        @keyframes fallAndFade {
+            0% {
+                transform: translate(0, 0) rotate(-45deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translate(0, 0) rotate(-45deg) scale(1);
+            }
+            100% {
+                transform: translate(-100vw, 100vh) rotate(720deg) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fallAndFadeLeft {
+            0% {
+                transform: translate(0, 0) rotate(45deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translate(0, 0) rotate(45deg) scale(1);
+            }
+            100% {
+                transform: translate(100vw, 100vh) rotate(-720deg) scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Do you want a bear hug?</h1>
+    <div class="container">
+        <img id="bearGif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGNzczBjcHhmajl6dHloejVrYmtweGhydGZuMTVnbGJlMXRodzByciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fpmJ0eZWcSZAcGoIv5/giphy.gif" alt="Cute bear waiting"> <!-- Placeholder: Initial bear GIF -->
+        <div class="buttons">
+            <button id="yesButton">Me too</button>
+            <button id="noButton">No</button>
+        </div>
+    </div>
+
+    <script>
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const bearGif = document.getElementById('bearGif');
+
+        let yesClickedFirstTime = false; // New state variable
+
+        yesButton.addEventListener('click', () => {
+            yesClickedFirstTime = true; // Set to true when Yes is clicked
+            bearGif.src = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnRpbzNtNGI2eXVpZXhjNXpkNWZtb2llNWR1a2EwZWhleGNiMzRqYiZlcD12MV9pbnRlcm5uYWxfZ2lmX2J5X2lkJmN0PWc/Ie4CIIvQS0bk3zwZlM/giphy.gif"; // Placeholder: Bear hug GIF
+            bearGif.alt = "Two bears hugging";
+            yesButton.disabled = true;
+            yesButton.textContent = "Hugged!";
+            noButton.style.display = ''; // Ensure noButton is visible
+            noButton.disabled = false; // Ensure noButton is enabled
+            noButton.textContent = "Back"; // Change noButton text to "Back"
+            noButton.style.position = 'static'; // Reset position
+            noButton.style.left = '';
+            noButton.style.top = '';
+
+            // Start heart animation when Yes is clicked for the first time
+            startHeartAnimation();
+        });
+
+        function startHeartAnimation() {
+            const numberOfHearts = 30; // Adjust as needed
+            for (let i = 0; i < numberOfHearts; i++) {
+                const heart = document.createElement('div');
+                            heart.classList.add('heart');
+                            document.body.appendChild(heart);
+                
+                            // Randomize animation direction
+                            const useFallAndFadeLeft = Math.random() < 0.5; // 50% chance for left-falling heart
+                            let startX;
+                            let animationName;
+                
+                            if (useFallAndFadeLeft) {
+                                // Start from left half
+                                startX = Math.random() * (window.innerWidth / 2);
+                                animationName = 'fallAndFadeLeft';
+                            } else {
+                                // Start from right half
+                                startX = Math.random() * (window.innerWidth / 2) + (window.innerWidth / 2);
+                                animationName = 'fallAndFade';
+                            }
+                
+                            const startY = Math.random() * -100; // Start above the viewport
+                
+                            heart.style.left = `${startX}px`;
+                            heart.style.top = `${startY}px`;
+                            heart.style.animationName = animationName;
+                
+                            // Randomize animation delay
+                            const delay = Math.random() * 3; // 0 to 3 seconds delay
+                            heart.style.animationDelay = `${delay}s`;
+                
+                            // Remove heart after animation to clean up DOM
+                            heart.addEventListener('animationend', () => {
+                                heart.remove();
+                            });            }
+        }
+
+        noButton.addEventListener('click', () => {
+            if (yesClickedFirstTime) {
+                // "Back" functionality
+                bearGif.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGNzczBjcHhmajl6dHloejVrYmtweGhydGZuMTVnbGJlMXRodzByciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fpmJ0eZWcSZAcGoIv5/giphy.gif";
+                bearGif.alt = "Cute bear waiting";
+                yesButton.disabled = false;
+                yesButton.textContent = "Me too!";
+                noButton.textContent = "No";
+                yesClickedFirstTime = false;
+                noButton.style.position = 'relative'; // Reset to relative positioning
+                noButton.style.left = '';
+                noButton.style.top = '';
+            } else {
+                // bearGif.src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTh0a3dqaGJ6cWE5NTFlNWhqeGYxMDR6YjF5cnluOGx5Mnk3ZngycyZlcD12MV9pbnRlcm5uYWxfZ2lmX2J5X2lkJmN0PWc/IKGMtuE6u1cO7GWiFC/giphy.gif";
+                // bearGif.alt = "Bear no money";
+                
+                // Random repositioning
+                noButton.style.position = 'absolute';
+                const maxX = window.innerWidth - noButton.offsetWidth;
+                const maxY = window.innerHeight - noButton.offsetHeight;
+
+                // Ensure button stays within visible viewport and not too close to other elements
+                // These values might need tweaking based on the layout
+                const buffer = 50; // Minimum distance from edges and other elements
+                const randomX = Math.random() * (maxX - buffer * 2) + buffer;
+                const randomY = Math.random() * (maxY - buffer * 2) + buffer;
+
+                noButton.style.left = `${randomX}px`;
+                noButton.style.top = `${randomY}px`;
+            }
+        });
+
+        // The 'No' button is initially disabled and will disappear if it were to be clicked.
+        // As per "button no cant even click its disapear when user clicked them",
+        // it means it should disappear as if clicked, but not actually be clickable.
+        // I've kept it disabled, and if by some chance it becomes enabled and clicked, it will disappear.
+        // However, the current setup keeps it permanently disabled.
+    </script>
+</body>
+</html>
