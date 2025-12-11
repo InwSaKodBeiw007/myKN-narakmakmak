@@ -18,7 +18,8 @@
             padding: 20px;
         }
         h1 {
-            color: #61dafb;
+            color: #E21B3C; /* Festive Red for Christmas */
+            transition: color 0.5s ease-in-out;
         }
         .container {
             text-align: center;
@@ -132,11 +133,11 @@
     </style>
 </head>
 <body>
-    <h1>Merry Christmas, tbh. I want to hug you?</h1>
+    <h1>Merry Christmas, tbh. Do you wanna hug bear?</h1>
     <div class="container">
         <img id="bearGif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGNzczBjcHhmajl6dHloejVrYmtweGhydGZuMTVnbGJlMXRodzByciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fpmJ0eZWcSZAcGoIv5/giphy.gif" alt="Cute bear waiting"> <!-- Placeholder: Initial bear GIF -->
         <div class="buttons">
-            <button id="yesButton">Me too</button>
+            <button id="yesButton">Yes, Merry Christmas!</button>
             <button id="noButton">No</button>
         </div>
     </div>
@@ -145,11 +146,15 @@
         const yesButton = document.getElementById('yesButton');
         const noButton = document.getElementById('noButton');
         const bearGif = document.getElementById('bearGif');
+        const h1 = document.querySelector('h1');
+        const initialH1Text = h1.textContent;
+
 
         let yesClickedFirstTime = false; // New state variable
 
         yesButton.addEventListener('click', () => {
             yesClickedFirstTime = true; // Set to true when Yes is clicked
+            h1.textContent = "I loved you too naa><❤️‍🩹";
             bearGif.src = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnRpbzNtNGI2eXVpZXhjNXpkNWZtb2llNWR1a2EwZWhleGNiMzRqYiZlcD12MV9pbnRlcm5uYWxfZ2lmX2J5X2lkJmN0PWc/Ie4CIIvQS0bk3zwZlM/giphy.gif"; // Placeholder: Bear hug GIF
             bearGif.alt = "Two bears hugging";
             yesButton.disabled = true;
@@ -206,6 +211,7 @@
         noButton.addEventListener('click', () => {
             if (yesClickedFirstTime) {
                 // "Back" functionality
+                h1.textContent = initialH1Text;
                 bearGif.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGNzczBjcHhmajl6dHloejVrYmtweGhydGZuMTVnbGJlMXRodzByciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fpmJ0eZWcSZAcGoIv5/giphy.gif";
                 bearGif.alt = "Cute bear waiting";
                 yesButton.disabled = false;
@@ -216,6 +222,7 @@
                 noButton.style.left = '';
                 noButton.style.top = '';
             } else {
+                h1.textContent = "I'm very missed you mak na KN. Dont just go pls😥";
                 // bearGif.src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTh0a3dqaGJ6cWE5NTFlNWhqeGYxMDR6YjF5cnluOGx5Mnk3ZngycyZlcD12MV9pbnRlcm5uYWxfZ2lmX2J5X2lkJmN0PWc/IKGMtuE6u1cO7GWiFC/giphy.gif";
                 // bearGif.alt = "Bear no money";
                 
@@ -235,11 +242,7 @@
             }
         });
 
-        // The 'No' button is initially disabled and will disappear if it were to be clicked.
-        // As per "button no cant even click its disapear when user clicked them",
-        // it means it should disappear as if clicked, but not actually be clickable.
-        // I've kept it disabled, and if by some chance it becomes enabled and clicked, it will disappear.
-        // However, the current setup keeps it permanently disabled.
+
     </script>
 </body>
 </html>
