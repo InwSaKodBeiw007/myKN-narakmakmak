@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bear Hugs</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
         html {
             width: 100%;
             height: 100%;
@@ -23,9 +24,11 @@
             overflow: hidden;
         }
         h1 {
+            font-family: 'Paytone One', sans-serif;
             color: #E21B3C; /* Festive Red for Christmas */
             font-size: 2em; /* Decreased font size */
             transition: color 0.5s ease-in-out;
+            text-shadow: 2px 2px 4px #c9c9c9;
         }
         .container {
             text-align: center;
@@ -52,16 +55,15 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, left 0.5s ease, top 0.5s ease; /* Added for smooth movement */
         }
-        #yesButton {
-            background-color: #4CAF50; /* Brighter Christmas Green */
-            color: white;
-        }
+
         #yesButton:hover {
             background-color: #45a049;
             transform: translateY(-2px);
         }
         #noButton {
-            background-color: #f44336; /* Brighter Christmas Red */
+            background-image: url('https://png.pngtree.com/background/20210710/original/pngtree-red-christmas-snow-winter-cartoon-show-board-background-picture-image_979028.jpg');
+            background-size: cover;
+            background-position: center;
             color: white;
             position: relative; /* Added for repositioning */
             transition: background-color 0.3s ease, transform 0.2s ease, left 0.5s ease, top 0.5s ease; /* Added for smooth movement */
@@ -73,6 +75,19 @@
         #noButton:disabled {
             cursor: not-allowed;
             opacity: 0.6;
+        }
+
+        .heart-button {
+            background-image: url('https://cdn.pixabay.com/photo/2017/02/12/09/02/heart-2059544_960_720.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+         .christmas-button {
+            background-image: url('https://as1.ftcdn.net/v2/jpg/06/72/06/00/1000_F_672060075_u2a3DSJAHZTB8Bdfj3ep9v5YD9u91unh.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
         }
 
         /* Heart animation styles */
@@ -155,25 +170,37 @@
         const bearGif = document.getElementById('bearGif');
         const h1 = document.querySelector('h1');
         const initialH1Text = h1.textContent;
+        let noButtonShrinkCount = 0;
+        const initialNoButtonPadding = '12px 25px';
+        const initialNoButtonFontSize = '1.1em';
 
+        window.addEventListener('DOMContentLoaded', () => {
+            yesButton.classList.add('christmas-button');
+        });
 
         yesButton.addEventListener('click', () => {
             if (yesButton.textContent === "Merry Christmas!") { // Check for "Merry Christmas!"
                 h1.textContent = "Merry Christmas! But i missed you na"; // Corrected h1 text
                 bearGif.src = "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZGh6MWF2bjZvaGQ0NTA1bWs5Nmpucml3ZzliMjljNnNjemdrOXlmbyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/mRvzQIDr0gHCz82SV0/giphy.gif"; // New GIF for first click
-                yesButton.textContent = "for my kn❤️"; // Set button text
+                yesButton.textContent = "KN is my love ❤️"; // Set button text
             } else { // This implies it's "Me too!"
                 h1.textContent = "You love me rew chai mai ><❤️‍🩹";
                 bearGif.src = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnRpbzNtNGI2eXVpZXhjNXpkNWZtb2llNWR1a2EwZWhleGNiMzRqYiZlcD12MV9pbnRlcm5uYWxfZ2lmX2J5X2lkJmN0PWc/Ie4CIIvQS0bk3zwZlM/giphy.gif"; // Placeholder: Bear hug GIF
                 yesButton.textContent = "Hugged!"; // Set button text
             }
             bearGif.alt = "Two bears hugging"; // This should apply to both
+            yesButton.style.opacity = '0.5';
             yesButton.disabled = true;
             noButton.textContent = "Back";
             noButton.style.position = 'static';
             noButton.style.left = '';
             noButton.style.top = '';
             startHeartAnimation();
+            noButtonShrinkCount = 0;
+            noButton.style.padding = initialNoButtonPadding;
+            noButton.style.fontSize = initialNoButtonFontSize;
+            noButton.style.display = 'inline-block';
+
         });
 
         function startHeartAnimation() {
@@ -226,11 +253,30 @@
                 noButton.style.position = 'relative';
                 noButton.style.left = '';
                 noButton.style.top = '';
+                yesButton.style.opacity = '1';
+                yesButton.classList.remove('heart-button');
+                yesButton.classList.add('christmas-button');
+                noButtonShrinkCount = 0;
+                noButton.style.padding = initialNoButtonPadding;
+                noButton.style.fontSize = initialNoButtonFontSize;
+                noButton.style.display = 'inline-block';
             } else { // "No" clicked
+                noButtonShrinkCount++;
                 bearGif.src = "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3enB4NDVmejVyajd6ZTB2YnkxYWt1cHNrczB4a3E0bmU0YXoxYTVkeSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/KiXcysMmlgSL15sd3B/giphy.gif";
                 h1.textContent = "I'm very missed you mak na KN. Dont just go pls😥";
                 yesButton.textContent = "Me too!";
                 noButton.style.position = 'absolute';
+
+                const newPadding = 12 - (noButtonShrinkCount * 2);
+                const newFontSize = 1.1 - (noButtonShrinkCount * 0.1);
+
+                if (newPadding <= 0 || newFontSize <= 0.1) {
+                    noButton.style.display = 'none';
+                } else {
+                    noButton.style.padding = `${newPadding}px ${newPadding * 2}px`;
+                    noButton.style.fontSize = `${newFontSize}em`;
+                }
+
                 const maxX = window.innerWidth - noButton.offsetWidth;
                 const maxY = window.innerHeight - noButton.offsetHeight;
                 const buffer = 50;
@@ -238,6 +284,8 @@
                 const randomY = Math.random() * (maxY - buffer * 2) + buffer;
                 noButton.style.left = `${randomX}px`;
                 noButton.style.top = `${randomY}px`;
+                yesButton.classList.remove('christmas-button');
+                yesButton.classList.add('heart-button');
             }
         });
 
