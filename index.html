@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bear Hugs</title>
     <style>
+        html {
+            width: 100%;
+            height: 100%;
+        }
         body {
             font-family: sans-serif;
             display: flex;
@@ -12,13 +16,15 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #282c34;
+            background-color: #1A472A; /* Christmas Green */
             color: #fff;
             margin: 0;
             padding: 20px;
+            overflow: hidden;
         }
         h1 {
             color: #E21B3C; /* Festive Red for Christmas */
+            font-size: 2em; /* Decreased font size */
             transition: color 0.5s ease-in-out;
         }
         .container {
@@ -26,8 +32,8 @@
             margin-top: 20px;
         }
         #bearGif {
-            max-width: 450px; /* Fixed width */
-            height: 450px; /* Fixed height */
+            max-width: 300px; /* Fixed width */
+            height: 300px; /* Fixed height */
             object-fit: cover; /* Ensures the image covers the area without distortion */
             border-radius: 8px;
             margin-bottom: 20px;
@@ -47,21 +53,21 @@
             transition: background-color 0.3s ease, transform 0.2s ease, left 0.5s ease, top 0.5s ease; /* Added for smooth movement */
         }
         #yesButton {
-            background-color: #28a745;
+            background-color: #4CAF50; /* Brighter Christmas Green */
             color: white;
         }
         #yesButton:hover {
-            background-color: #218838;
+            background-color: #45a049;
             transform: translateY(-2px);
         }
         #noButton {
-            background-color: #dc3545;
+            background-color: #f44336; /* Brighter Christmas Red */
             color: white;
             position: relative; /* Added for repositioning */
             transition: background-color 0.3s ease, transform 0.2s ease, left 0.5s ease, top 0.5s ease; /* Added for smooth movement */
         }
         #noButton:hover:not(:disabled) {
-            background-color: #c82333;
+            background-color: #e53935;
             transform: translateY(-2px);
         }
         #noButton:disabled {
@@ -133,11 +139,12 @@
     </style>
 </head>
 <body>
-    <h1>Merry Christmas, tbh. Do you wanna hug bear?</h1>
+    <h1>Merry Christmas! Miss me mai?</h1>
     <div class="container">
-        <img id="bearGif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGNzczBjcHhmajl6dHloejVrYmtweGhydGZuMTVnbGJlMXRodzByciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fpmJ0eZWcSZAcGoIv5/giphy.gif" alt="Cute bear waiting"> <!-- Placeholder: Initial bear GIF -->
+        <img id="bearGif" src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3enB4NDVmejVyajd6ZTB2YnkxYWt1cHNrczB4a3E0bmU0YXoxYTVkeSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/30ka3yzwAoFKosZUY2/giphy.gif" alt="Cute bear waiting"> <!-- Placeholder: Initial bear GIF -->
+        <!-- <img id="bearGif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGNzczBjcHhmajl6dHloejVrYmtweGhydGZuMTVnbGJlMXRodzByciZlcD12MV9pbnRlcm5uYWxfZ2lmX2J5X2lkJmN0PWc/fpmJ0eZWcSZAcGoIv5/giphy.gif" alt="Cute bear waiting"> Placeholder: Initial bear GIF -->
         <div class="buttons">
-            <button id="yesButton">Yes, Merry Christmas!</button>
+            <button id="yesButton">Merry Christmas!</button>
             <button id="noButton">No</button>
         </div>
     </div>
@@ -150,23 +157,22 @@
         const initialH1Text = h1.textContent;
 
 
-        let yesClickedFirstTime = false; // New state variable
-
         yesButton.addEventListener('click', () => {
-            yesClickedFirstTime = true; // Set to true when Yes is clicked
-            h1.textContent = "I loved you too naa><❤️‍🩹";
-            bearGif.src = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnRpbzNtNGI2eXVpZXhjNXpkNWZtb2llNWR1a2EwZWhleGNiMzRqYiZlcD12MV9pbnRlcm5uYWxfZ2lmX2J5X2lkJmN0PWc/Ie4CIIvQS0bk3zwZlM/giphy.gif"; // Placeholder: Bear hug GIF
-            bearGif.alt = "Two bears hugging";
+            if (yesButton.textContent === "Merry Christmas!") { // Check for "Merry Christmas!"
+                h1.textContent = "Merry Christmas! But i missed you na"; // Corrected h1 text
+                bearGif.src = "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZGh6MWF2bjZvaGQ0NTA1bWs5Nmpucml3ZzliMjljNnNjemdrOXlmbyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/mRvzQIDr0gHCz82SV0/giphy.gif"; // New GIF for first click
+                yesButton.textContent = "for my kn❤️"; // Set button text
+            } else { // This implies it's "Me too!"
+                h1.textContent = "You love me rew chai mai ><❤️‍🩹";
+                bearGif.src = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnRpbzNtNGI2eXVpZXhjNXpkNWZtb2llNWR1a2EwZWhleGNiMzRqYiZlcD12MV9pbnRlcm5uYWxfZ2lmX2J5X2lkJmN0PWc/Ie4CIIvQS0bk3zwZlM/giphy.gif"; // Placeholder: Bear hug GIF
+                yesButton.textContent = "Hugged!"; // Set button text
+            }
+            bearGif.alt = "Two bears hugging"; // This should apply to both
             yesButton.disabled = true;
-            yesButton.textContent = "Hugged!";
-            noButton.style.display = ''; // Ensure noButton is visible
-            noButton.disabled = false; // Ensure noButton is enabled
-            noButton.textContent = "Back"; // Change noButton text to "Back"
-            noButton.style.position = 'static'; // Reset position
+            noButton.textContent = "Back";
+            noButton.style.position = 'static';
             noButton.style.left = '';
             noButton.style.top = '';
-
-            // Start heart animation when Yes is clicked for the first time
             startHeartAnimation();
         });
 
@@ -176,12 +182,12 @@
                 const heart = document.createElement('div');
                             heart.classList.add('heart');
                             document.body.appendChild(heart);
-                
+
                             // Randomize animation direction
                             const useFallAndFadeLeft = Math.random() < 0.5; // 50% chance for left-falling heart
                             let startX;
                             let animationName;
-                
+
                             if (useFallAndFadeLeft) {
                                 // Start from left half
                                 startX = Math.random() * (window.innerWidth / 2);
@@ -191,17 +197,17 @@
                                 startX = Math.random() * (window.innerWidth / 2) + (window.innerWidth / 2);
                                 animationName = 'fallAndFade';
                             }
-                
+
                             const startY = Math.random() * -100; // Start above the viewport
-                
+
                             heart.style.left = `${startX}px`;
                             heart.style.top = `${startY}px`;
                             heart.style.animationName = animationName;
-                
+
                             // Randomize animation delay
                             const delay = Math.random() * 3; // 0 to 3 seconds delay
                             heart.style.animationDelay = `${delay}s`;
-                
+
                             // Remove heart after animation to clean up DOM
                             heart.addEventListener('animationend', () => {
                                 heart.remove();
@@ -209,34 +215,27 @@
         }
 
         noButton.addEventListener('click', () => {
-            if (yesClickedFirstTime) {
+            if (noButton.textContent === "Back") {
                 // "Back" functionality
                 h1.textContent = initialH1Text;
-                bearGif.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGNzczBjcHhmajl6dHloejVrYmtweGhydGZuMTVnbGJlMXRodzByciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fpmJ0eZWcSZAcGoIv5/giphy.gif";
+                bearGif.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGNzczBjcHhmajl6dHloejVrYmtweGhydGZuMTVnbGJlMXRodzByciZlcD12MV9pbnRlcm5uYWxfZ2lmX2J5X2lkJmN0PWc/fpmJ0eZWcSZAcGoIv5/giphy.gif";
                 bearGif.alt = "Cute bear waiting";
                 yesButton.disabled = false;
-                yesButton.textContent = "Me too!";
+                yesButton.textContent = "Merry Christmas!";
                 noButton.textContent = "No";
-                yesClickedFirstTime = false;
-                noButton.style.position = 'relative'; // Reset to relative positioning
+                noButton.style.position = 'relative';
                 noButton.style.left = '';
                 noButton.style.top = '';
-            } else {
+            } else { // "No" clicked
+                bearGif.src = "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3enB4NDVmejVyajd6ZTB2YnkxYWt1cHNrczB4a3E0bmU0YXoxYTVkeSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/KiXcysMmlgSL15sd3B/giphy.gif";
                 h1.textContent = "I'm very missed you mak na KN. Dont just go pls😥";
-                // bearGif.src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTh0a3dqaGJ6cWE5NTFlNWhqeGYxMDR6YjF5cnluOGx5Mnk3ZngycyZlcD12MV9pbnRlcm5uYWxfZ2lmX2J5X2lkJmN0PWc/IKGMtuE6u1cO7GWiFC/giphy.gif";
-                // bearGif.alt = "Bear no money";
-                
-                // Random repositioning
+                yesButton.textContent = "Me too!";
                 noButton.style.position = 'absolute';
                 const maxX = window.innerWidth - noButton.offsetWidth;
                 const maxY = window.innerHeight - noButton.offsetHeight;
-
-                // Ensure button stays within visible viewport and not too close to other elements
-                // These values might need tweaking based on the layout
-                const buffer = 50; // Minimum distance from edges and other elements
+                const buffer = 50;
                 const randomX = Math.random() * (maxX - buffer * 2) + buffer;
                 const randomY = Math.random() * (maxY - buffer * 2) + buffer;
-
                 noButton.style.left = `${randomX}px`;
                 noButton.style.top = `${randomY}px`;
             }
