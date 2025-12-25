@@ -1,77 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bear Hugs</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Mali&family=Gaegu&display=swap');
+
         html {
             width: 100%;
             height: 100%;
         }
+
         body {
-            font-family: sans-serif;
+            font-family: 'Mali', cursive;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #1A472A; /* Christmas Green */
+            background-color: #1A472A;
+            /* Christmas Green */
             color: #fff;
             margin: 0;
             padding: 20px;
             overflow: hidden;
         }
+
         h1 {
-            font-family: 'Paytone One', sans-serif;
-            color: #E21B3C; /* Festive Red for Christmas */
-            font-size: 2em; /* Decreased font size */
+            font-family: 'Mali', cursive;
+            color: #E21B3C;
+            /* Festive Red for Christmas */
+            font-size: 2em;
+            /* Decreased font size */
             transition: color 0.5s ease-in-out;
-            text-shadow: 2px 2px 4px #c9c9c9;
         }
+
         .container {
             text-align: center;
             margin-top: 20px;
         }
+
         #bearGif {
-            max-width: 300px; /* Fixed width */
-            height: 300px; /* Fixed height */
-            object-fit: cover; /* Ensures the image covers the area without distortion */
+            max-width: 300px;
+            /* Fixed width */
+            height: 300px;
+            /* Fixed height */
+            object-fit: cover;
+            /* Ensures the image covers the area without distortion */
             border-radius: 8px;
             margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+
         .buttons {
             display: flex;
             gap: 15px;
             justify-content: center;
         }
+
         button {
+            font-family: 'Gaegu', cursive;
             padding: 12px 25px;
             font-size: 1.1em;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, left 0.5s ease, top 0.5s ease; /* Added for smooth movement */
+            transition: background-color 0.3s ease, transform 0.2s ease, left 0.5s ease, top 0.5s ease;
+            /* Added for smooth movement */
         }
 
         #yesButton:hover {
             background-color: #45a049;
             transform: translateY(-2px);
         }
+
         #noButton {
             background-image: url('https://png.pngtree.com/background/20210710/original/pngtree-red-christmas-snow-winter-cartoon-show-board-background-picture-image_979028.jpg');
             background-size: cover;
             background-position: center;
-            color: white;
-            position: relative; /* Added for repositioning */
-            transition: background-color 0.3s ease, transform 0.2s ease, left 0.5s ease, top 0.5s ease; /* Added for smooth movement */
+            background-color: #E21B3C;
+            color: #fff;
+            position: relative;
+            /* Added for repositioning */
+            transition: background-color 0.3s ease, transform 0.2s ease, left 0.5s ease, top 0.5s ease;
+            /* Added for smooth movement */
         }
+
         #noButton:hover:not(:disabled) {
-            background-color: #e53935;
             transform: translateY(-2px);
         }
+
         #noButton:disabled {
             cursor: not-allowed;
             opacity: 0.6;
@@ -83,7 +103,8 @@
             background-position: center;
             color: white;
         }
-         .christmas-button {
+
+        .christmas-button {
             background-image: url('https://as1.ftcdn.net/v2/jpg/06/72/06/00/1000_F_672060075_u2a3DSJAHZTB8Bdfj3ep9v5YD9u91unh.jpg');
             background-size: cover;
             background-position: center;
@@ -95,30 +116,38 @@
             position: absolute;
             background-color: red;
             transform: rotate(-45deg);
-            width: 40px; /* Increased size */
-            height: 40px; /* Increased size */
+            width: 40px;
+            /* Increased size */
+            height: 40px;
+            /* Increased size */
             animation: fallAndFade 5s linear forwards;
-            opacity: 0; /* Start hidden */
-            z-index: -1; /* Behind other content */
+            opacity: 0;
+            /* Start hidden */
+            z-index: -1;
+            /* Behind other content */
         }
 
         .heart::before,
         .heart::after {
             content: '';
             position: absolute;
-            width: 40px; /* Increased size */
-            height: 40px; /* Increased size */
+            width: 40px;
+            /* Increased size */
+            height: 40px;
+            /* Increased size */
             background-color: red;
             border-radius: 50%;
         }
 
         .heart::before {
-            top: -20px; /* Adjusted for new size */
+            top: -20px;
+            /* Adjusted for new size */
             left: 0;
         }
 
         .heart::after {
-            left: 20px; /* Adjusted for new size */
+            left: 20px;
+            /* Adjusted for new size */
             top: 0;
         }
 
@@ -127,10 +156,12 @@
                 transform: translate(0, 0) rotate(-45deg) scale(0);
                 opacity: 0;
             }
+
             10% {
                 opacity: 1;
                 transform: translate(0, 0) rotate(-45deg) scale(1);
             }
+
             100% {
                 transform: translate(-100vw, 100vh) rotate(720deg) scale(0);
                 opacity: 0;
@@ -142,10 +173,12 @@
                 transform: translate(0, 0) rotate(45deg) scale(0);
                 opacity: 0;
             }
+
             10% {
                 opacity: 1;
                 transform: translate(0, 0) rotate(45deg) scale(1);
             }
+
             100% {
                 transform: translate(100vw, 100vh) rotate(-720deg) scale(0);
                 opacity: 0;
@@ -153,10 +186,13 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Merry Christmas! Miss me mai?</h1>
     <div class="container">
-        <img id="bearGif" src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3enB4NDVmejVyajd6ZTB2YnkxYWt1cHNrczB4a3E0bmU0YXoxYTVkeSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/30ka3yzwAoFKosZUY2/giphy.gif" alt="Cute bear waiting"> <!-- Placeholder: Initial bear GIF -->
+        <img id="bearGif"
+            src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3enB4NDVmejVyajd6ZTB2YnkxYWt1cHNrczB4a3E0bmU0YXoxYTVkeSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/30ka3yzwAoFKosZUY2/giphy.gif"
+            alt="Cute bear waiting"> <!-- Placeholder: Initial bear GIF -->
         <!-- <img id="bearGif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGNzczBjcHhmajl6dHloejVrYmtweGhydGZuMTVnbGJlMXRodzByciZlcD12MV9pbnRlcm5uYWxfZ2lmX2J5X2lkJmN0PWc/fpmJ0eZWcSZAcGoIv5/giphy.gif" alt="Cute bear waiting"> Placeholder: Initial bear GIF -->
         <div class="buttons">
             <button id="yesButton">Merry Christmas!</button>
@@ -207,38 +243,39 @@
             const numberOfHearts = 30; // Adjust as needed
             for (let i = 0; i < numberOfHearts; i++) {
                 const heart = document.createElement('div');
-                            heart.classList.add('heart');
-                            document.body.appendChild(heart);
+                heart.classList.add('heart');
+                document.body.appendChild(heart);
 
-                            // Randomize animation direction
-                            const useFallAndFadeLeft = Math.random() < 0.5; // 50% chance for left-falling heart
-                            let startX;
-                            let animationName;
+                // Randomize animation direction
+                const useFallAndFadeLeft = Math.random() < 0.5; // 50% chance for left-falling heart
+                let startX;
+                let animationName;
 
-                            if (useFallAndFadeLeft) {
-                                // Start from left half
-                                startX = Math.random() * (window.innerWidth / 2);
-                                animationName = 'fallAndFadeLeft';
-                            } else {
-                                // Start from right half
-                                startX = Math.random() * (window.innerWidth / 2) + (window.innerWidth / 2);
-                                animationName = 'fallAndFade';
-                            }
+                if (useFallAndFadeLeft) {
+                    // Start from left half
+                    startX = Math.random() * ((window.innerWidth / 2) * 0.7);
+                    animationName = 'fallAndFadeLeft';
+                } else {
+                    // Start from right half
+                    startX = Math.random() * (window.innerWidth / 2) + (window.innerWidth / 2);
+                    animationName = 'fallAndFade';
+                }
 
-                            const startY = Math.random() * -100; // Start above the viewport
+                const startY = Math.random() * -25; // Start above the viewport
 
-                            heart.style.left = `${startX}px`;
-                            heart.style.top = `${startY}px`;
-                            heart.style.animationName = animationName;
+                heart.style.left = `${startX}px`;
+                heart.style.top = `${startY}px`;
+                heart.style.animationName = animationName;
 
-                            // Randomize animation delay
-                            const delay = Math.random() * 3; // 0 to 3 seconds delay
-                            heart.style.animationDelay = `${delay}s`;
+                // Randomize animation delay
+                const delay = Math.random() * 3; // 0 to 3 seconds delay
+                heart.style.animationDelay = `${delay}s`;
 
-                            // Remove heart after animation to clean up DOM
-                            heart.addEventListener('animationend', () => {
-                                heart.remove();
-                            });            }
+                // Remove heart after animation to clean up DOM
+                heart.addEventListener('animationend', () => {
+                    heart.remove();
+                });
+            }
         }
 
         noButton.addEventListener('click', () => {
@@ -292,4 +329,5 @@
 
     </script>
 </body>
+
 </html>
