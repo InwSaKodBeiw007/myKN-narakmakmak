@@ -163,7 +163,7 @@
             }
 
             100% {
-                transform: translate(-100vw, 100vh) rotate(720deg) scale(0);
+                transform: translate(-30vw, 100vh) rotate(720deg) scale(0);
                 opacity: 0;
             }
         }
@@ -180,7 +180,7 @@
             }
 
             100% {
-                transform: translate(100vw, 100vh) rotate(-720deg) scale(0);
+                transform: translate(30vw, 100vh) rotate(-720deg) scale(0);
                 opacity: 0;
             }
         }
@@ -246,18 +246,17 @@
                 heart.classList.add('heart');
                 document.body.appendChild(heart);
 
-                // Randomize animation direction
-                const useFallAndFadeLeft = Math.random() < 0.5; // 50% chance for left-falling heart
+                const useFallAndFadeLeft = Math.random() < 0.5;
                 let startX;
                 let animationName;
 
-                if (useFallAndFadeLeft) {
-                    // Start from left half
-                    startX = Math.random() * ((window.innerWidth / 2) * 0.7);
+                if (useFallAndFadeLeft) { // Animation moves right
+                    // Start on the left 70% of the screen so it doesn't immediately go off-right
+                    startX = Math.random() * (window.innerWidth * 0.7);
                     animationName = 'fallAndFadeLeft';
-                } else {
-                    // Start from right half
-                    startX = Math.random() * (window.innerWidth / 2) + (window.innerWidth / 2);
+                } else { // Animation moves left
+                    // Start on the right 70% of the screen so it doesn't immediately go off-left
+                    startX = Math.random() * (window.innerWidth * 0.7) + (window.innerWidth * 0.3);
                     animationName = 'fallAndFade';
                 }
 
